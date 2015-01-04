@@ -1,0 +1,61 @@
+﻿  * {
+            margin: 0px;
+            padding: 0px;
+            font-family: 'Lato', sans-serif;
+        }
+
+        /*** Base Mobile 1 ***/
+
+        .container {
+            height: 480px;
+            width: 320px;
+            background-color: #212121;
+            margin-right: 40px;
+            margin-left: 40px;
+            margin-top: 40px;
+            float: left;
+            position:relative;
+        }
+
+            .container .head {
+                width: 100%;
+                padding:10px 0px;
+                background-color: #009688;
+                text-align:center;
+            }
+
+                .container .head h2 {
+                    width: 100%;
+                    background-color: #009688;
+                    font-weight:300;
+                    font-size:24px;
+                    color:white;
+                }
+
+                .container .head .icon-search {
+                    top:10px;
+                    right:10px;
+                    position: absolute;
+                    color: #fff;
+                    font-size: 26px;
+                    margin: auto;
+                }
+
+            .container .foot {
+                position:absolute;
+                height: 60px;
+                width: 100%;
+                background-color: #009688;
+                bottom:0px;
+            }
+
+                .container .foot li {
+                    list-style-type: none;
+                    float: left;
+                    color: #fff;
+                    font-size: 26px;
+                    margin-left: 35px;
+                    margin-right: 35px;
+                    margin-top: 10px;
+                    cursor:pointer;
+                }
