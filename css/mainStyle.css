@@ -43,18 +43,19 @@ section.home p {
     margin:auto;
 }
 
-.layer {
+.row {
     height:auto;
     width:100%;
+    margin:80px auto;
 }
 
-.layer div.aside-col{
+.col-md-6{
     width:46%;
-    margin-right:25%;
-    float:left;
+    display:inline-block;
+    vertical-align:middle;
 }
 
-.layer div.aside-col h2{
+.col-md-6:first-child h2{
     width:60%;
     color:#CDDC39;
     text-align:left;
@@ -62,7 +63,7 @@ section.home p {
     margin-top:6%;
 }
 
-.layer div.aside-col p{
+.col-md-6 p{
     width:60%;
     margin:auto;
     text-align:left;
@@ -70,15 +71,17 @@ section.home p {
 }
 
 footer{
+    margin-top:60px;
     clear:both;
-    background-color:black;
+    background-color:#212121;
     width:100%;
 }
 
 footer p{
     color:white;
-    width:60%;
+    width:50%;
     text-align:center;
     margin:auto;
-    padding-top:2em%;
+    padding-top:2em;
+    padding-bottom:2em;
 }

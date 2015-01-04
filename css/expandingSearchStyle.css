@@ -17,23 +17,23 @@
     height: 50px;
     margin: 0;
     font-size: 20px;
-    color: rgba(176,16,85,1);
+    color: #CDDC39;
 }
 
     .searchbox-input::-webkit-input-placeholder {
-        color: rgba(176,16,85,0.6);
+        color: rgba(205,220,57,0.6);
     }
 
     .searchbox-input:-moz-placeholder {
-        color: rgba(176,16,85,0.6);
+        color: rgba(205,220,57,0.6);
     }
 
     .searchbox-input::-moz-placeholder {
-        color: rgba(176,16,85,0.6);
+        color: rgba(205,220,57,0.6);
     }
 
     .searchbox-input:-ms-input-placeholder {
-        color: rgba(176,16,85,0.6);
+        color: rgba(205,220,57,0.6);
     }
 
 .searchbox-icon,
@@ -54,7 +54,7 @@
     text-align: center;
     cursor: pointer;
     color: #fff;
-    background: #009688;
+    background: #CDDC39;
 }
 
 .searchbox {
