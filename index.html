@@ -19,6 +19,7 @@
     <link href="css/loaderStyle.css" rel="stylesheet" />
     <link href="css/switchStyle.css" rel="stylesheet" />
     <link href="css/submitLoadStyle.css" rel="stylesheet" />
+    <link href="css/mapStyle.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -43,7 +44,7 @@
                 <div class="container">
 
                     <div class="head">
-                        <h2>Search Bar</h2>
+                        <h2>Title</h2>
                         <form class="searchbox">
                             <input type="text" placeholder="Search......" name="search" onkeyup="buttonUp();" class="searchbox-input" required>
                             <input type="submit" class="searchbox-submit" value="GO">
@@ -73,7 +74,7 @@
                 <div class="container">
 
                     <div class="head">
-                        <h2>New page Opening 1</h2>
+                        <h2>Title</h2>
                         <i class="icon-search not-search"></i>
                     </div>
 
@@ -105,7 +106,7 @@
                 <div class="container">
 
                     <div class="head">
-                        <h2>New page Opening 2</h2>
+                        <h2>Title</h2>
                         <i class="icon-search not-search"></i>
                     </div>
 
@@ -136,7 +137,7 @@
                 <div class="container">
 
                     <div class="head">
-                        <h2>Loading</h2>
+                        <h2>Title</h2>
                         <i class="icon-search not-search"></i>
                     </div>
 
@@ -167,7 +168,7 @@
                 <div class="container">
 
                     <div class="head">
-                        <h2>Switch</h2>
+                        <h2>Title</h2>
                         <i class="icon-search not-search"></i>
                     </div>
 
@@ -195,7 +196,7 @@
 
             <div class="col-md-6">
 
-                <h2>Validate</h2>
+                <h2>Title</h2>
                 <p>The first submit button shows a successful validation, the second one a failed validation.</p>
                 <p>Iphone 4S - </p>
             </div>
@@ -203,7 +204,7 @@
                 <div class="container">
 
                     <div class="head">
-                        <h2>Validate</h2>
+                        <h2>Title</h2>
                         <i class="icon-search not-search"></i>
                     </div>
 
@@ -231,6 +232,38 @@
             </div>
         </div>
 
+        <div class="row">
+
+            <div class="col-md-6">
+                <h2>Map</h2>
+                <p>The first submit button shows a successful validation, the second one a failed validation.</p>
+                <p>Iphone 4S - </p>
+            </div>
+            <div class="col-md-6">
+                <div class="container">
+
+                    <div class="head">
+                        <h2>Title</h2>
+                        <i class="icon-search not-search"></i>
+                    </div>
+
+                    <ul class="zoom-controls">
+                        <li><i id="zoom-in" class="icon-zoom-in"></i></li>
+                        <li><i id="zoom-out" class="icon-zoom-out"></i></li>
+                    </ul>
+
+                    <div style="height:88%;" id="map-canvas"></div>
+
+                    <ul class="foot">
+                        <li class="icon-home-outline"></li>
+                        <li class="icon-pen"></li>
+                        <li class="icon-user-6"></li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
     </section>
 
     <footer>
@@ -244,6 +277,7 @@
     <script src="js/modernizr.custom.js" type="text/javascript"></script>
     <script src="js/classie.js" type="text/javascript"></script>
     <script src="js/uiProgressButton.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLCqh-arKU7YuFQIBI5mE8iXptBoLzg9g"></script>
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -267,8 +301,8 @@
                 if (isOpen == false) {
                     searchBox.addClass('searchbox-open');
                     snabbt(inputBox, 'attention', {
-                        position: [50, 0, 0],
-                        spring_constant: 2.4,
+                        position: [200, 0, 0],
+                        spring_constant: 1.4,
                         spring_deacceleration: 0.9,
                     });
                     inputBox.focus();
@@ -318,7 +352,81 @@
                     }
                 });
             });
+
+            /* Google maps */
+            var map;
+            var zoomLevel = 11;
+            var lat, long;
+            var markerIcon = {
+                path: 'M8.851,0C3.963,0,0,3.895,0,8.699c0,1.259,0.273,2.457,0.763,3.537c0.948,3.169,3.132,9.039,8.126,19.726c0,0,5.992-13.229,8.08-19.794c0.472-1.063,0.732-2.236,0.732-3.469C17.702,3.895,13.74,0,8.851,0z M8.851,13.392c-2.676,0-4.846-2.17-4.846-4.846c0-2.677,2.17-4.847,4.846-4.847c2.677,0,4.847,2.17,4.847,4.847            C13.698,11.222,11.528,13.392,8.851,13.392z',
+                fillColor: '#FFF',
+                fillOpacity: 1,
+                strokeWeight: 0,
+                scale: 1
+            };
+
+            function initialize() {
+
+
+                function maPosition(position) {
+                    lat = position.coords.latitude;
+                    long = position.coords.longitude;
+
+                    generateMap(position.coords.latitude, position.coords.longitude);
+                }
+
+                if (navigator.geolocation)
+                    navigator.geolocation.getCurrentPosition(maPosition);
+                else
+                    generateMap(0, 0);
+
+                function generateMap(lat, long) {
+                    var mapOptions = {
+                        center: { lat: lat, lng: long },
+                        zoom: zoomLevel,
+                        styles: [{ featureType: "all", elementType: "all", stylers: [{ invert_lightness: true }, { saturation: 10 }, { lightness: 30 }, { gamma: 0.5 }, { hue: "#435158" }] }],
+                        disableDefaultUI: true
+
+                    };
+                    map = new google.maps.Map(document.getElementById('map-canvas'),
+                        mapOptions);
+                }
+
+                $('.zoom-controls li:first-child').delay(700).animate({ 'right': 45 }, 500);
+                $('.zoom-controls li:last-child').delay(900).animate({ 'right': 5 }, 700, "", function () {
+                    snabbt($('.zoom-controls'), 'attention', {
+                        position: [0, 30, 0],
+                        spring_constant: 4.4,
+                        spring_deacceleration: 0.9
+                    });
+                });
+            }
+
+            $('#zoom-in').on('click', function () {
+                zoomLevel++;
+                map.setZoom(zoomLevel);
+            });
+
+            $('#zoom-out').on('click', function () {
+                zoomLevel--;
+                map.setZoom(zoomLevel);
+            });
+
+            for (var i = 0; i < 49; i++) {
+                setTimeout(function () {
+                    // Let's also add a marker while we're at it
+                    var marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(lat + (Math.random() / 10), long + (Math.random() / 10)),
+                        map: map,
+                        icon: markerIcon,
+                        title: 'Memory !'
+                    });
+                }, 250 * i);
+            }
+
+            google.maps.event.addDomListener(window, 'load', initialize);
         });
+
     </script>
 </body>
 
